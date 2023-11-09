@@ -42,7 +42,7 @@ function getVariant(variant: ButtonProps['variant']) {
 const Button = ({ variant = 'sem-cor', size="medio" ,children = 'Botão', className, disabled, ...rest }: ButtonProps) => {
     return (
         <button
-            className={`py-2 px-7 rounded-full font-semibold  ${getVariant(variant)} ${getSize(size)} text-shadow-xl  ${disabled ? 'bg-gray-200 text-white border ' : ""} ${className}  `}
+            className={`py-2 px-7 rounded-full font-semibold  ${getVariant(variant)} ${getSize(size)} text-shadow-xl  ${disabled ? 'bg-gray-300 text-white border hover:bg-gray-300 hover:text-white ' : ""} ${className}  `}
             disabled={disabled}
             {...rest}
         >

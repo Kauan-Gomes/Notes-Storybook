@@ -1,0 +1,19 @@
+.rolagem::-webkit-scrollbar {
+    width: 8px;
+    /* width of the entire scrollbar */
+}
+
+.rolagem::-webkit-scrollbar-track {
+    background: rgba(202, 158, 158, 0.575);
+    
+    /* color of the tracking area */
+}
+
+.rolagem::-webkit-scrollbar-thumb {
+    background-color: rgb(95, 95, 69);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    
+    /* creates padding around scroll thumb */
+}

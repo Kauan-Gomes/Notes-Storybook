@@ -21,9 +21,9 @@ const meta: Meta<NotaProps> = {
         notes: {
             type: "string"
         },
-        color: {
+        variant: {
             control: {
-                type: "select",
+                type: "inline-radio",
                 options: colorOptions,
             }
         },
@@ -40,22 +40,56 @@ export default meta;
 
 type Story = StoryObj<NotaProps>;
 
-export const Primary: Story = {
+export const SemCor: Story = {
     args: {
         title: "Projeto",
         notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
-        color: "#fff000",
+        variant: 'sem-cor'
     }
-
 };
-export const Secondary: Story = {
+export const Azul: Story = {
     args: {
         title: "Projeto",
         notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
-        color: "#fff",
+        variant: 'azul'
     }
-
 };
+export const Vermelho: Story = {
+    args: {
+        title: "Projeto",
+        notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
+        variant: 'vermelho'
+    }
+};
+export const Roxo: Story = {
+    args: {
+        title: "Projeto",
+        notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
+        variant: 'roxo'
+    }
+};
+export const Verde: Story = {
+    args: {
+        title: "Projeto",
+        notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
+        variant: 'verde'
+    }
+};
+export const Amarelo: Story = {
+    args: {
+        title: "Projeto",
+        notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
+        variant: 'amarelo'
+    }
+};
+export const Cinza: Story = {
+    args: {
+        title: "Projeto",
+        notes: "Projeto de um bloco de notas com uma documentação de front-end feita com Storybook",
+        variant: 'cinza'
+    }
+};
+
 
 
 
