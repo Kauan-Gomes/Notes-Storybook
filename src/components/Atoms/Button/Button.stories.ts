@@ -11,50 +11,63 @@ const meta: Meta<ButtonProps> = {
         disabled: {
             type: "boolean",
         },
-        className: {
-            type: "string"
+        variant: {
+            control: {
+                type: "select"
+            }
+        },
+        size: {
+            description: 'opções de tamanho',
+            control: {
+                type: "radio"
+            }
         }
     }
 }
 
 export default meta
 
-export const Primary: StoryObj<ButtonProps> = {
+export const SemCor: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão'
     }
 }
-export const Disabled: StoryObj<ButtonProps> = {
+export const Azul: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão', 
-    disabled: true
+    variant: 'azul'
     }
 }
-export const Secondary: StoryObj<ButtonProps> = {
+export const Vermelho: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão',
-    variant: "secondary",
+    variant: "vermelho",
     }
 }
-export const SecondaryDisabled: StoryObj<ButtonProps> = {
+export const Roxo: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão',
-    variant: "secondary",
-    disabled: true,
+    variant: "roxo",
     }
 }
 
-export const Tertiary: StoryObj<ButtonProps> = {
+export const Verde: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão',
-    variant: "tertiary",
+    variant: "verde",
     }
 }
-export const TertiaryDisabled: StoryObj<ButtonProps> = {
+
+export const Amarelo: StoryObj<ButtonProps> = {
     args: {
     children: 'Botão',
-    variant: "tertiary",
-    disabled: true,
+    variant: "amarelo",
+    }
+}
+export const Cinza: StoryObj<ButtonProps> = {
+    args: {
+    children: 'Botão',
+    variant: "cinza",
     }
 }
 

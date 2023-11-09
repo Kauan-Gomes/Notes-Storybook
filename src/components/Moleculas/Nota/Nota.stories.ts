@@ -28,10 +28,10 @@ const meta: Meta<NotaProps> = {
             }
         },
         setAtributes: {
-            control: { disable: true }
+            table: { disable: true }
         },
         setToggleClose: {
-            control: { disable: true }
+            table: { disable: true }
         },
     }
 };
