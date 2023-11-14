@@ -7,9 +7,9 @@ import Nota from "../../Moleculas/Nota/Nota"
 export type ListaNotasProps = {
     listaNotas?: [{
         id: number,
-        title?: string,
-        notes?: string,
-        variant?: 'sem-cor' | 'azul' | 'vermelho' | 'roxo' | 'verde' | 'amarelo' | 'cinza'
+        title: string,
+        notes: string,
+        variant: 'sem-cor' | 'azul' | 'vermelho' | 'roxo' | 'verde' | 'amarelo' | 'cinza'
     }]
 }
 
@@ -37,8 +37,8 @@ export default function ListaNotas({ listaNotas }: ListaNotasProps) {
                     setAtributes={setAtributes}
                     setToggleClose={setToggleClose}
                     key={props.id}
-                    title={props.title}  // Corrigir aqui
-                    notes={props.notes}    // Corrigir aqui
+                    title={props.title}  
+                    notes={props.notes}    
                     variant={props.variant}
                 />
             )}

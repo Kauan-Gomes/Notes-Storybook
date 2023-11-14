@@ -25,7 +25,12 @@ type Story = StoryObj<ListaNotasProps>;
 export const Lista: Story = {
     args: {
         listaNotas: [
-          
+            {
+                id: 1,
+                title: "mercado",
+                notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                variant: "amarelo"
+            },
             {
                 id: 2,
                 title: "prova",
