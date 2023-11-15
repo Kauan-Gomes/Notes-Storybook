@@ -1,10 +1,12 @@
+import 'tailwindcss/tailwind.css';
+
 export type Variant = 'sem-cor' | 'azul' | 'vermelho' | 'roxo' | 'verde' | 'amarelo' | 'cinza';
 export type Disabled = boolean
 
-export function getVariant(variant: Variant, disabled: Disabled): string {
+export function getVariant(variant: Variant): string {
   switch (variant) {
     case 'sem-cor':
-      return disabled ?  'bg-gray-300 text-white' :'bg-white text-black border-2 font-semibold hover:bg-gray-500 hover:text-white';
+      return 'bg-white text-black border-2 font-semibold hover:bg-gray-500 hover:text-white';
     case 'azul':
       return 'bg-blue-400 text-white hover:bg-blue-900';
     case 'vermelho':

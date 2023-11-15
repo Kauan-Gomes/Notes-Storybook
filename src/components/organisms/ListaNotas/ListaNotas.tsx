@@ -5,12 +5,12 @@ import './style.css'
 import Nota from "../../Moleculas/Nota/Nota"
 
 export type ListaNotasProps = {
-    listaNotas?: [{
+    listaNotas?: {
         id: number,
         title: string,
         notes: string,
         variant: 'sem-cor' | 'azul' | 'vermelho' | 'roxo' | 'verde' | 'amarelo' | 'cinza'
-    }]
+    }[]
 }
 
 

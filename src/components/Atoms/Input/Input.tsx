@@ -10,8 +10,6 @@ export type InputProps = {
 };
 
 
-
-
 const Input = ({ type, value, placeholder, disabled, className, variant = "sem-cor" }: InputProps) => {
     return (
         <input
