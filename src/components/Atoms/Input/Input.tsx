@@ -10,12 +10,12 @@ export type InputProps = {
 };
 
 
-const Input = ({ type, value, placeholder, disabled, className, variant = "sem-cor" }: InputProps) => {
+const Input = ({ type, value, placeholder, disabled = false, className, variant = "sem-cor" }: InputProps) => {
     return (
         <input
-            className={`border-none text-lg text-center py-2 px-4 ${getVariant(variant)} ${className}`}
+            className={`border-none text-lg text-center py-2 px-4 ${getVariant(variant, disabled)} ${className}`}
             type={type}
-            value={value == '' ? 'undefined' : value}
+            value={value == '' ? '' : value}
             placeholder={placeholder}
             disabled={disabled}
         />

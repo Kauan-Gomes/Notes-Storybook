@@ -1,15 +1,26 @@
+
 import { getVariant, Variant } from '../../../getVariantutils';
 
 export type SpanColorProps = {
-  variant:  Variant
+  variant: Variant
   disabled: boolean
+  onClick: () => void; // Adiciona uma propriedade de clique
+  isActive: boolean; // Adiciona uma propriedade de ativo
 }
 
 
-export default function SpanColors({variant='sem-cor', disabled = false}: SpanColorProps) {
+export default function SpanColors({
+  variant = 'sem-cor',
+  disabled = false,
+  onClick,
+  isActive,
+}: SpanColorProps) {
+
+
   return (
-    <button 
-    disabled={disabled}
-    className={` h-5 w-5 rounded-full ${getVariant(variant, disabled )}`}></button>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={` h-5 w-5 rounded-full ${isActive ? 'focus:outline-none focus:ring focus:border-blue-300' : ''} ${getVariant(variant, disabled)} `}></button>
   )
 }

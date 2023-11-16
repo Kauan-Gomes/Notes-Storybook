@@ -21,7 +21,10 @@ const meta: Meta<ButtonProps> = {
             control: {
                 type: "radio"
             }
-        }
+        },
+        componentType: {
+            table: { disable: true }
+        },
     }
 }
 
