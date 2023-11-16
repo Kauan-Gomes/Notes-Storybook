@@ -40,10 +40,10 @@ function getSize(size: ButtonProps['size']) {
 //   }
 
 
-const Button = ({ variant = 'sem-cor', size="medio" ,children = 'Botão', className, disabled, ...rest }: ButtonProps) => {
+const Button = ({ variant = 'sem-cor', size="medio" ,children = 'Botão', className, disabled= false, ...rest }: ButtonProps) => {
     return (
         <button
-            className={`py-2 px-7 rounded-full font-semibold  ${getVariant(variant)} ${getSize(size)} text-shadow-xl   ${className}  `}
+            className={`py-2 px-7 rounded-full font-semibold  ${getVariant(variant, disabled)} ${getSize(size)} ${className}  `}
             disabled={disabled}
             {...rest}
         >

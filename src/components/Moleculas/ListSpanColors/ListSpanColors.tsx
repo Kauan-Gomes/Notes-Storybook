@@ -16,7 +16,7 @@ const listSpanColors = () => {
     return (
       <div className="flex gap-5">
         {cores.map((elemento) => (
-          <SpanColors variant={elemento.variant} key={elemento.variant} />
+          <SpanColors variant={elemento.variant} key={elemento.variant} disabled={false} />
         ))}
       </div>
     );
