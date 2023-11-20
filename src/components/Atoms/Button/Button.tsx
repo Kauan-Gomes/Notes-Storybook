@@ -5,14 +5,14 @@ export type ButtonProps = {
     children: React.ReactNode;
     size?: "pequeno" | "medio" | "grande";
     variant?: Variant,
-    componentType?: ComponentType
+    componentType?: ComponentType,
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 
 function getSize(size: ButtonProps['size']) {
-    if(size == 'pequeno'){
+    if (size == 'pequeno') {
         return 'text-sm'
-    } else if(size == 'medio'){
+    } else if (size == 'medio') {
         return 'text-base'
     }
     else {
@@ -41,7 +41,8 @@ function getSize(size: ButtonProps['size']) {
 //   }
 
 
-const Button = ({ variant = 'sem-cor', size="medio" ,children = 'Botão', className, componentType='button',  disabled= false, ...rest }: ButtonProps) => {
+const Button = ({ variant = "sem-cor", size = "medio", children = 'Botão', className, disabled = false, ...rest }: ButtonProps) => {
+    const componentType = 'button'
     return (
         <button
             className={`py-2 px-7 rounded-full font-semibold  ${getVariant(variant, disabled, componentType)} ${getSize(size)} ${className}  `}

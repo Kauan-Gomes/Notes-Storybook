@@ -2,23 +2,28 @@ import SpanColors from "../../Atoms/SpanColors/SpanColors"
 import { Variant } from '../../../getVariantutils';
 import { useState } from "react";
 
-const cores: { variant: Variant }[] = [
-  { variant: 'sem-cor' },
-  { variant: 'azul' },
-  { variant: 'vermelho' },
-  { variant: 'roxo' },
-  { variant: 'verde' },
-  { variant: 'amarelo' },
-  { variant: 'cinza' }
-];
+export type ListSpanColorsProps = {
+  setVariant: (variant:Variant) => void;
+}
 
+const cores: Variant[] = [
+  'sem-cor',
+  'azul',
+  'vermelho',
+  'roxo',
+  'amarelo',
+  'cinza',
+  'verde'
+]
 
-
-export default function ModalAdd(){
-  const [activeVariant, setActiveVariant] = useState('sem-cor');
+export default function ListSpanColors({setVariant}: ListSpanColorsProps){
+  const [activeVariant, setActiveVariant] = useState<Variant>('sem-cor');
 
   const handleButtonClick = (variant: Variant) => {
     setActiveVariant(variant);
+    setVariant(variant)
+
+    
   };
 
   return (
@@ -26,11 +31,11 @@ export default function ModalAdd(){
       <div className="flex gap-5">
         {cores.map((elemento) => (
           <SpanColors
-            variant={elemento.variant}
-            key={elemento.variant}
+            variant={elemento}
+            key={elemento}
             disabled={false}
-            onClick={() => handleButtonClick(elemento.variant)}
-            isActive={elemento.variant === activeVariant}
+            onClick={() => handleButtonClick(elemento)}
+            isActive={elemento === activeVariant}
           />
         ))}
       </div>

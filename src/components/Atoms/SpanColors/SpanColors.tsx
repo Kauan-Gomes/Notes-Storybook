@@ -13,14 +13,17 @@ export default function SpanColors({
   variant = 'sem-cor',
   disabled = false,
   onClick,
-  isActive,
+  isActive=true,
 }: SpanColorProps) {
 
+  const componentType = 'span'
 
   return (
     <button
+      type='button'
       onClick={onClick}
       disabled={disabled}
-      className={` h-5 w-5 rounded-full ${isActive ? 'focus:outline-none focus:ring focus:border-blue-300' : ''} ${getVariant(variant, disabled)} `}></button>
+      className={` h-5 w-5 rounded-full ${isActive ? 'focus:outline-none focus:ring focus:border-blue-300' : ''} ${getVariant(variant, disabled, componentType)} `}>
+    </button>
   )
 }

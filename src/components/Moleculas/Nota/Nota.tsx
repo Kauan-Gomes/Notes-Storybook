@@ -1,20 +1,22 @@
 import { useState } from "react";
 import Input from "../../Atoms/Input/Input"
 import Textarea from "../../Atoms/Textarea/Textarea";
-
+import { getVariant, Variant, Disabled } from '../../../getVariantutils';
 
 export type NotaProps = {
     title?: string;
     notes?: string;
-    variant?: 'sem-cor' | 'azul' | 'vermelho' | 'roxo' | 'verde' | 'amarelo' | 'cinza'
-    setAtributes: (atributos: { title: string; notes: string; variant: string }) => void;
+    variant?: Variant,
+    disabled: Disabled
+    setAtributes: (atributos: { title: string; notes: string; variant: Variant }) => void;
     setToggleClose: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Nota = ({ title='', notes='', variant = 'sem-cor', setAtributes, setToggleClose }: NotaProps) => {
+const Nota = ({ title='', notes='', variant = 'sem-cor', setAtributes, setToggleClose, disabled }: NotaProps) => {
 
 
     const [toggleHover, setToggleHover] = useState(false)
+    const componentType = 'nota'
 
     return (
         <div
@@ -25,7 +27,7 @@ const Nota = ({ title='', notes='', variant = 'sem-cor', setAtributes, setToggle
                 type="text"
                 value={title}
                 placeholder="Escreva um titulo..."
-                disabled={true}
+                disabled={false}
                 className={`w-full px-2 py-3 text-center font-semibold`}
                 variant={variant}
             />
@@ -35,7 +37,7 @@ const Nota = ({ title='', notes='', variant = 'sem-cor', setAtributes, setToggle
                 disabled={true}
             />
             {toggleHover &&
-                <div className="flex justify-center items-center font-semibold absolute bg-[#ffd569dc] h-64 w-60 top-0 rounded select-none">
+                <div className={`flex justify-center items-center font-semibold absolute ${getVariant(variant, disabled, componentType)} bg-opacity-70  h-64 w-60 top-0 rounded select-none`}>
                     <h2 className="transition duration-300 transform scale-100 hover:scale-140 ">Clique aqui <br /> para ver mais</h2>
                 </div>
             }

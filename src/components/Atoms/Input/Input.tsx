@@ -7,17 +7,22 @@ export type InputProps = {
     placeholder?: string;
     disabled?: boolean;
     className: string,
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 
-const Input = ({ type, value, placeholder, disabled = false, className, variant = "sem-cor" }: InputProps) => {
+const Input = ({ type, value, placeholder, disabled = false, className, variant = "sem-cor", onChange }: InputProps) => {
+    
+    const componentType = 'input'
+
     return (
         <input
-            className={`border-none text-lg text-center py-2 px-4 ${getVariant(variant, disabled)} ${className}`}
+            className={` text-xl text-center py-2 px-4 outline-none placeholder:text-black/40 placeholder:text-xl ${getVariant(variant, disabled, componentType)} text-black ${className}`}
             type={type}
             value={value == '' ? '' : value}
             placeholder={placeholder}
             disabled={disabled}
+            onChange={onChange}
         />
     );
 }
