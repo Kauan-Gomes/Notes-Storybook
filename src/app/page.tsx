@@ -54,7 +54,6 @@ export default function Home() {
   const handleAddNotes = (event: FormEvent<HTMLFormElement>, variant: Variant) => {
     event.preventDefault();
 
-    console.log((event.currentTarget.elements[0] as HTMLInputElement).value)
     //pelo evento pegando os valores do input e textArea
     const title = (event.currentTarget.elements[0] as HTMLInputElement).value;
     const notes = (event.currentTarget.elements[1] as HTMLTextAreaElement).value;
@@ -96,7 +95,7 @@ export default function Home() {
         />
         <section className='flex mt-5 '>
           <ModalAdd variant={variant} setVariant={setVariant} functionAddnotes={handleAddNotes} />
-          <ListaDeNotas setVariant={setVariant} variant={variant} listaNotas={filteredNotes} />
+          <ListaDeNotas listaNotas={filteredNotes} setFilteredNotes={setFilteredNotes} />
         </section>
       </body>
     </>

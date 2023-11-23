@@ -9,18 +9,33 @@ import Atributes from "@/interfaceAtributes";
 export type ListaNotasProps = {
     listaNotas?: ListaNotas[]
     atributes?: Atributes
+    setFilteredNotes: (updatedListaNotas: ListaNotas[]) => void;
 }
 
 
-
-export default function ListaDeNotas({ listaNotas }: ListaNotasProps) {
+export default function ListaDeNotas({ listaNotas, setFilteredNotes }: ListaNotasProps) {
 
     const [atributes, setAtributes] = useState<Atributes>({
+        id: 0,
         title: "",
         notes: "",
         variant: "sem-cor",
     })
     const [toggleClose, setToggleClose] = useState(true)
+
+    const editAtributesNotes = (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => {
+        const updatedListaNotas = (listaNotas || []).map((elemento) => {
+            if (elemento.id === id) {
+                return {
+                    ...elemento,
+                    ...newValues,
+                };
+            }
+            return elemento;
+        });
+            setFilteredNotes(updatedListaNotas);
+       
+    };
 
 
     return (
@@ -30,13 +45,15 @@ export default function ListaDeNotas({ listaNotas }: ListaNotasProps) {
                     setAtributes={setAtributes}
                     setToggleClose={setToggleClose}
                     key={props.id}
-                    title={props.title}  
-                    notes={props.notes}    
+                    id={props.id}
+                    title={props.title}
+                    notes={props.notes}
                     variant={props.variant}
                     disabled={false}
                 />
             )}
             <ModalEdit
+                editAtributesNotes={editAtributesNotes}
                 atributes={atributes}
                 setAtributes={setAtributes}
                 toggleClose={toggleClose}

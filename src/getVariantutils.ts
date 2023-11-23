@@ -36,8 +36,8 @@ const optionsVariants = {
     disabled: 'border'
   },
   nota: {
-    'sem-cor': 'bg-black text-white border-2  ',
-    azul: 'bg-blue-400 ',
+    'sem-cor': 'bg-gray-400 text-white border-2  ',
+    azul: 'bg-blue-400 text-white',
     vermelho: 'bg-red-400',
     roxo: 'bg-purple-400',
     verde: 'bg-green-500',

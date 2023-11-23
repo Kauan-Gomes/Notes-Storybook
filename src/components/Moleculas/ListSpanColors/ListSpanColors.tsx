@@ -3,7 +3,7 @@ import { Variant } from '../../../getVariantutils';
 import { useState } from "react";
 
 export type ListSpanColorsProps = {
-  setVariant: (variant:Variant) => void;
+  onClick: (variant: Variant) => void;
 }
 
 const cores: Variant[] = [
@@ -16,15 +16,15 @@ const cores: Variant[] = [
   'verde'
 ]
 
-export default function ListSpanColors({setVariant}: ListSpanColorsProps){
+export default function ListSpanColors({onClick}: ListSpanColorsProps){
   const [activeVariant, setActiveVariant] = useState<Variant>('sem-cor');
 
   const handleButtonClick = (variant: Variant) => {
     setActiveVariant(variant);
-    setVariant(variant)
-
-    
+    onClick(variant)
   };
+
+
 
   return (
     <>

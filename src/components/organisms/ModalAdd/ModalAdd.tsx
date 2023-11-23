@@ -6,7 +6,7 @@ import Button from "../../Atoms/Button/Button";
 import { FormEvent } from "react";
 
 export type ModalAddProps = {
-  variant: Variant,
+  variant?: Variant,
   functionAddnotes: (event: FormEvent<HTMLFormElement>, variant: Variant) => void;
   setVariant: (variant: Variant) => void;
 }
@@ -46,7 +46,7 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
         disabled={false}
         className='h-72 w-72'
       />
-      <ListSpanColors setVariant={setVariant} />
+      <ListSpanColors onClick={setVariant} />
       <Button
         variant={variant}
         size='medio'

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import Button from '../../Atoms/Button/Button';
 import Input from '../../Atoms/Input/Input'
 import ListSpanColors from '../../Moleculas/ListSpanColors/ListSpanColors';
 import Textarea from '../../Atoms/Textarea/Textarea'
-import { Variant } from '@/getVariantutils';
 import Atributes from '@/interfaceAtributes';
+import { Variant } from '@/getVariantutils';
 
 
 export type ModalEditProps = {
+    editAtributesNotes: (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => void;
     atributes: Atributes
     setAtributes: (atributes: Atributes) => void;
     toggleClose: boolean;
@@ -15,7 +16,9 @@ export type ModalEditProps = {
 }
 
 
-export default function ModalEdit({ atributes, setAtributes, toggleClose, setToggleClose }: ModalEditProps) {
+export default function ModalEdit({ atributes, setAtributes, toggleClose, setToggleClose, editAtributesNotes }: ModalEditProps) {
+
+    const [button, setButton] = useState<string>()
 
     const handleModalClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (e.target === e.currentTarget) {
@@ -23,16 +26,38 @@ export default function ModalEdit({ atributes, setAtributes, toggleClose, setTog
         }
     };
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        
+        //console.log(button)
+
+        if (button === 'save') {
+            // Chame a função editAtributesNotes com as propriedades específicas
+            editAtributesNotes(atributes.id, {
+                title: atributes.title,
+                notes: atributes.notes,
+                variant: atributes.variant,
+            });
+            setToggleClose(true)
+        }
+
+    }
+
+
     return (
         <div
             onClick={(e) => handleModalClick(e)}
             className={`fixed rounded top-0 left-0 bg-black/40 w-full h-full flex justify-center items-center ${toggleClose ? "hidden" : ""}`}>
-            <div
-                className='bg-white flex flex-col items-center w-auto rounded-xl relative '>
+            <form
+            onSubmit={handleSubmit}
+                className='bg-white flex flex-col items-center gap-5 w-6/12 h-auto rounded-xl relative '>
                 <button
+                    type='button'
                     onClick={() => setToggleClose(!toggleClose)}
-                    className='absolute right-6 top-4 font-bold text-xl'
-                >X</button>
+                    className='absolute -right-3 -top-4 bg-black/80 rounded-full px-3 py-2 text-white font-semibold text-sm'
+                >X
+                </button>
                 <Input
                     value={atributes.title}
                     onChange={(e) =>
@@ -41,7 +66,7 @@ export default function ModalEdit({ atributes, setAtributes, toggleClose, setTog
                             title: e.target.value,
                         })
                     }
-                    className={`h-16 w-full rounded-t-lg`}
+                    className={`h-16 w-full text-3xl rounded-t-lg`}
                     variant={atributes.variant}
                 />
                 <Textarea
@@ -52,23 +77,27 @@ export default function ModalEdit({ atributes, setAtributes, toggleClose, setTog
                         })
                     }
                     value={atributes.notes}
-                    className='mx-auto my-10 text-2xl resize-none w-5/6 border h-4/6 outline-none p-4'
+                    className='mx-auto  text-2xl resize-none w-5/6 h-72 text-center outline-none p-4 rolagem border-none bg-black/10 rounded'
                     disabled={false}
                 />
-                <ListSpanColors setAtributes={setAtributes} />
-                <div className='mx-5 my-6 flex gap-5'>
+                <ListSpanColors onClick={(variant) => setAtributes({ ...atributes, variant })} />
+                <div className='mx-5 mb-5 flex gap-5'>
                     <Button
-                        variant={atributes.variant}
-                    >Remover</Button>
+                    variant={atributes.variant}
+                    type="submit"
+                    onClick={() => setButton('remove')}
+                    >
+                        Remover
+                    </Button>
                     <Button
-                        variant={atributes.variant}
-                    >Cancelar</Button>
-                    <Button
-                        variant={atributes.variant}
-                    >Salvar
+                    variant={atributes.variant}
+                    type="submit"
+                    onClick={() => setButton('save')}
+                    >
+                        Salvar
                     </Button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
