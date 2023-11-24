@@ -7,13 +7,14 @@ import ListaNotas from "@/InterfaceListaNotas";
 import Atributes from "@/interfaceAtributes";
 
 export type ListaNotasProps = {
-    listaNotas?: ListaNotas[]
+    filteredNotes?: ListaNotas[]
     atributes?: Atributes
     setFilteredNotes: (updatedListaNotas: ListaNotas[]) => void;
+    setlistaNotas: (updatedListaNotas: ListaNotas[]) => void;
 }
 
 
-export default function ListaDeNotas({ listaNotas, setFilteredNotes }: ListaNotasProps) {
+export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setlistaNotas }: ListaNotasProps) {
 
     const [atributes, setAtributes] = useState<Atributes>({
         id: 0,
@@ -24,7 +25,7 @@ export default function ListaDeNotas({ listaNotas, setFilteredNotes }: ListaNota
     const [toggleClose, setToggleClose] = useState(true)
 
     const editAtributesNotes = (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => {
-        const updatedListaNotas = (listaNotas || []).map((elemento) => {
+        const updatedListaNotas = (filteredNotes || []).map((elemento) => {
             if (elemento.id === id) {
                 return {
                     ...elemento,
@@ -33,14 +34,29 @@ export default function ListaDeNotas({ listaNotas, setFilteredNotes }: ListaNota
             }
             return elemento;
         });
-            setFilteredNotes(updatedListaNotas);
-       
+        console.log(filteredNotes)
+        setFilteredNotes(updatedListaNotas);
+        setlistaNotas(updatedListaNotas)
+        
     };
+
+    const removeNotes = (id: number) => {
+        const updatedListaNotas = [...(filteredNotes || [])]; 
+        const index = updatedListaNotas.findIndex((notes) => notes.id === id);
+
+        if (index !== -1) {
+            updatedListaNotas.splice(index, 1);
+        }
+
+        console.log(updatedListaNotas);
+        setFilteredNotes(updatedListaNotas);
+        setlistaNotas(updatedListaNotas)
+    }
 
 
     return (
         <div className={`border mx-5 w-8/12  right-5 overflow-auto h-[500px] rounded-xl  2xl:h-[700px] flex flex-wrap text-center rolagem`}>
-            {listaNotas && listaNotas.map((props) =>
+            {filteredNotes && filteredNotes.map((props) =>
                 <Nota
                     setAtributes={setAtributes}
                     setToggleClose={setToggleClose}
@@ -53,6 +69,7 @@ export default function ListaDeNotas({ listaNotas, setFilteredNotes }: ListaNota
                 />
             )}
             <ModalEdit
+                removeNotes={removeNotes}
                 editAtributesNotes={editAtributesNotes}
                 atributes={atributes}
                 setAtributes={setAtributes}

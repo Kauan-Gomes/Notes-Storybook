@@ -8,6 +8,7 @@ import { Variant } from '@/getVariantutils';
 
 
 export type ModalEditProps = {
+    removeNotes: (id: number) => void
     editAtributesNotes: (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => void;
     atributes: Atributes
     setAtributes: (atributes: Atributes) => void;
@@ -16,7 +17,7 @@ export type ModalEditProps = {
 }
 
 
-export default function ModalEdit({ atributes, setAtributes, toggleClose, setToggleClose, editAtributesNotes }: ModalEditProps) {
+export default function ModalEdit({ atributes, setAtributes, toggleClose, setToggleClose, editAtributesNotes, removeNotes }: ModalEditProps) {
 
     const [button, setButton] = useState<string>()
 
@@ -29,11 +30,7 @@ export default function ModalEdit({ atributes, setAtributes, toggleClose, setTog
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        
-        //console.log(button)
-
         if (button === 'save') {
-            // Chame a função editAtributesNotes com as propriedades específicas
             editAtributesNotes(atributes.id, {
                 title: atributes.title,
                 notes: atributes.notes,
@@ -41,7 +38,10 @@ export default function ModalEdit({ atributes, setAtributes, toggleClose, setTog
             });
             setToggleClose(true)
         }
-
+        else if(button === 'remove'){
+            removeNotes(atributes.id)
+            setToggleClose(true)
+        }
     }
 
 

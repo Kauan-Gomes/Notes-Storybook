@@ -85,6 +85,7 @@ export default function Home() {
     setFilteredNotes(filterNotes)
   };
 
+
   return (
     <>
       <body className="h-full bg-[url('/fundoCortiço.avif')]">
@@ -95,7 +96,7 @@ export default function Home() {
         />
         <section className='flex mt-5 '>
           <ModalAdd variant={variant} setVariant={setVariant} functionAddnotes={handleAddNotes} />
-          <ListaDeNotas listaNotas={filteredNotes} setFilteredNotes={setFilteredNotes} />
+          <ListaDeNotas setlistaNotas={setlistaNotas} filteredNotes={filteredNotes} setFilteredNotes={setFilteredNotes} />
         </section>
       </body>
     </>

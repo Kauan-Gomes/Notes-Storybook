@@ -9,10 +9,10 @@ export type HeaderProps = {
 
 export default function ({ listaNotas, handleOptionChange, selectedOption }: HeaderProps) {
     return (
-        <header className='flex w-full h-20 bg-[#ffd569] mx-auto justify-around items-center border-b-2 shadow-lg border-black/20'>
-            <h1 className='font-semibold text-4xl '>Betagera Notes</h1>
+        <header className='flex w-full h-20 bg-[#698cff] mx-auto justify-around items-center border-b-2 shadow-lg border-black/20'>
+            <h1 className='font-semibold text-white text-4xl '>Betagera Notes</h1>
             <div className='flex gap-2'>
-                <label className='font-semibold p-1'>Pesquisa: </label>
+                <label className='font-semibold p-1 text-white'>Pesquisa: </label>
                 <input className='rounded-full shadow-lg p-1 pl-3' list="notes" name="note" id="note" value={selectedOption} onChange={handleOptionChange} />
                 {listaNotas && (
                     <datalist id="notes">
