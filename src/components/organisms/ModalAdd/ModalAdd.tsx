@@ -22,7 +22,7 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
     functionAddnotes(event, variant)
 
     setVariant('sem-cor');
-    
+
     titleInput.value = "";
     notesTextArea.value = "";
 
@@ -39,7 +39,6 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
         disabled={false}
         className='w-full h-16  rounded-t-md '
         variant={variant}
-
       />
       <Textarea
         placeholder="Faça sua anotação..."
@@ -50,11 +49,12 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
       <Button
         variant={variant}
         size='medio'
-        children='Criar nota'
         className='mt-5'
         disabled={false}
         type="submit"
-      />
+      >
+        Criar nota
+      </Button>
     </form>
   )
 }

@@ -7,7 +7,7 @@ export type HeaderProps = {
     selectedOption: string;
 }
 
-export default function ({ listaNotas, handleOptionChange, selectedOption }: HeaderProps) {
+export default function Header({ listaNotas, handleOptionChange, selectedOption }: HeaderProps) {
     return (
         <header className='flex w-full h-20 bg-[#698cff] mx-auto justify-around items-center border-b-2 shadow-lg border-black/20'>
             <h1 className='font-semibold text-white text-4xl '>Betagera Notes</h1>

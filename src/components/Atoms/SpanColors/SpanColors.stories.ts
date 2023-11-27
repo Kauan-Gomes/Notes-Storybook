@@ -32,7 +32,7 @@ export const Verde: Story = {
     }
 };
 
-export const vermelho: Story = {
+export const Vermelho: Story = {
     args: {
         variant: 'vermelho'
     }
