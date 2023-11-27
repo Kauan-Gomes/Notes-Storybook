@@ -19,9 +19,10 @@ export default meta;
 export const SemCor: StoryObj<ModalEditProps> = {
     args: {
         atributes: {
-            titulo: "Exemplo",
-            notas: "Aqui estão algumas notas...",
-            cor: "azul",  
+            id: 1,
+            title: "Exemplo",
+            notes: "Aqui estão algumas notas...",
+            variant: "azul",  
         },
     }
 }
