@@ -10,11 +10,11 @@ export type ListaNotasProps = {
     filteredNotes?: ListaNotas[]
     atributes?: Atributes
     setFilteredNotes: (updatedListaNotas: ListaNotas[]) => void;
-    setlistaNotas: (updatedListaNotas: ListaNotas[]) => void;
+    setListaNotas: (updatedListaNotas: ListaNotas[]) => void;
 }
 
 
-export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setlistaNotas }: ListaNotasProps) {
+export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setListaNotas }: ListaNotasProps) {
 
     const [atributes, setAtributes] = useState<Atributes>({
         id: 0,
@@ -36,7 +36,7 @@ export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setlista
         });
         console.log(filteredNotes)
         setFilteredNotes(updatedListaNotas);
-        setlistaNotas(updatedListaNotas)
+        setListaNotas(updatedListaNotas)
         
     };
 
@@ -50,7 +50,7 @@ export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setlista
 
         console.log(updatedListaNotas);
         setFilteredNotes(updatedListaNotas);
-        setlistaNotas(updatedListaNotas)
+        setListaNotas(updatedListaNotas)
     }
 
 

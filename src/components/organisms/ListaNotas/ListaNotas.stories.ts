@@ -5,26 +5,16 @@ import { ListaNotasProps } from './ListaNotas'
 const meta: Meta<ListaNotasProps> = {
     title: "Organisms/ListaNotas",
     component: ListaNotas,
-    argTypes: {
-        listaNotas: {
-            table: {
-                type: {
-                    summary: "Array",
-                    detail: "Detalhes adicionais sobre o array, se necessário",
-                },
-                defaultValue: [],
-            },
-        },
-    },
+
 };
 
 export default meta;
 
 type Story = StoryObj<ListaNotasProps>;
-
+ 
 export const Lista: Story = {
     args: {
-        listaNotas: [
+        filteredNotes: [
             {
                 id: 1,
                 title: "mercado",

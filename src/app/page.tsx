@@ -96,7 +96,7 @@ export default function Home() {
         />
         <section className='flex mt-5 '>
           <ModalAdd variant={variant} setVariant={setVariant} functionAddnotes={handleAddNotes} />
-          <ListaDeNotas setlistaNotas={setlistaNotas} filteredNotes={filteredNotes} setFilteredNotes={setFilteredNotes} />
+          <ListaDeNotas setListaNotas={setlistaNotas} filteredNotes={filteredNotes} setFilteredNotes={setFilteredNotes} />
         </section>
       </body>
     </>
