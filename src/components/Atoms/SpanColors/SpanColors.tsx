@@ -23,7 +23,8 @@ export default function SpanColors({
       type='button'
       onClick={onClick}
       disabled={disabled}
-      className={` h-5 w-5 rounded-full ${isActive ? 'focus:outline-none focus:ring focus:border-blue-300' : ''} ${getVariant(variant, disabled, componentType)} `}>
+      className={` h-5 w-5 rounded-full ${isActive ? 'focus:outline-none focus:ring focus:border-blue-300' : ''} ${getVariant(variant, disabled, componentType)} `}
+      >
     </button>
   )
 }

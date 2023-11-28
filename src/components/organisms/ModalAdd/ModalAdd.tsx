@@ -32,7 +32,9 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
   return (
     <form
       onSubmit={handleSubmit}
-      className="border w-2/6 mx-5 flex flex-col gap-5 rounded-md items-center ">
+      className="border w-2/6 mx-5 flex flex-col gap-5 rounded-md items-center "
+      data-testid="modal-add-form"
+      >
       <Input
         type='text'
         placeholder='Título...'
@@ -45,7 +47,9 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
         disabled={false}
         className='h-72 w-72'
       />
-      <ListSpanColors onClick={setVariant} />
+      <ListSpanColors 
+      onClick={setVariant} 
+      />
       <Button
         variant={variant}
         size='medio'
