@@ -5,42 +5,33 @@ import Header from '@/components/organisms/Header/Header'
 import ListaDeNotas from '@/components/organisms/ListaNotas/ListaNotas';
 import ModalAdd from '@/components/organisms/ModalAdd/ModalAdd';
 import { Variant } from '@/getVariantutils';
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 export default function Home() {
 
-  const [listaNotas, setlistaNotas] = useState<ListaNotas[]>([
-    {
-      id: 1,
-      title: "mercado",
-      notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker includin",
-      variant: "sem-cor"
-    },
-    {
-      id: 2,
-      title: "prova",
-      notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      variant: "azul"
-    },
-    {
-      id: 3,
-      title: "trabalho",
-      notes: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when ",
-      variant: "vermelho"
-    },
-    {
-      id: 4,
-      title: "receita",
-      notes: "Peço desculpas pelo mal-entendido. Se você deseja que o texto seja truncado na vertical (em relação à altura da div) e não na horizontal, você pode usar a classe line-clamp-{n} do Tailwind CSS, onde {n} é",
-      variant: "amarelo"
-    },
-    {
-      id: 5,
-      title: "lista de tarefa",
-      notes: "ajskjaskjaksjkasjka",
-      variant: "roxo"
+  const NotesFromApi = async () => {
+    try {
+      const response = await fetch('http://localhost:3300/note/list');
+      if (!response.ok) {
+        throw new Error('Erro ao buscar notas da API');
+      }
+      const data = await response.json();
+      const reversedData = data.reverse();
+
+      setlistaNotas(reversedData);
+      setFilteredNotes(reversedData);
+    } catch (error) {
+      console.error(error);
     }
-  ])
+  }
+
+  useEffect(() => {
+    NotesFromApi();
+  }, []);
+
+
+
+  const [listaNotas, setlistaNotas] = useState<ListaNotas[]>([])
 
   const [variant, setVariant] = useState<Variant>()
   //valores do input com base no option
@@ -49,9 +40,30 @@ export default function Home() {
   const [filteredNotes, setFilteredNotes] = useState(listaNotas)
 
 
+  const addNoteToApi = async (newNote: Partial<Omit<ListaNotas, 'id'>>) => {
+    try {
+      const response = await fetch('http://localhost:3300/note', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newNote),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar nota na API');
+      }
+
+      // Atualiza a lista de notas após a adição
+      NotesFromApi();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   //função para adicionar notas
-  const handleAddNotes = (event: FormEvent<HTMLFormElement>, variant: Variant) => {
+  const handleAddNotes = async (event: FormEvent<HTMLFormElement>, variant: Variant) => {
     event.preventDefault();
 
     //pelo evento pegando os valores do input e textArea
@@ -67,12 +79,20 @@ export default function Home() {
     };
 
     //adicionando a nota as outras
+    await addNoteToApi(newNote);
 
-    setlistaNotas([newNote, ...listaNotas]);
-    setFilteredNotes([newNote, ...listaNotas])
+    const currentList = [...listaNotas];
+
+    // Adiciona a nova nota no início da lista
+    currentList.unshift(newNote);
+
+    // Atualiza o estado com a nova ordem das notas
+    setlistaNotas(currentList);
+    setFilteredNotes(currentList);
+
   }
 
-
+  console.log(listaNotas)
   //função para filtrar as notas com base na barra de pesquisa do input 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event)

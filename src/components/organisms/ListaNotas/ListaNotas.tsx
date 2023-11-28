@@ -24,33 +24,72 @@ export default function ListaDeNotas({ filteredNotes, setFilteredNotes, setLista
     })
     const [toggleClose, setToggleClose] = useState(true)
 
-    const editAtributesNotes = (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => {
-        const updatedListaNotas = (filteredNotes || []).map((elemento) => {
-            if (elemento.id === id) {
-                return {
-                    ...elemento,
+    const editAtributesNotes = async (id: number, newValues: Partial<Omit<Atributes, 'id'>>) => {
+        try {
+            const response = await fetch(`http://localhost:3300/note/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
                     ...newValues,
-                };
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao editar nota na API');
             }
-            return elemento;
-        });
-        console.log(filteredNotes)
-        setFilteredNotes(updatedListaNotas);
-        setListaNotas(updatedListaNotas)
-        
+
+            const updatedListaNotas = (filteredNotes || []).map((elemento) => {
+                if (elemento.id === id) {
+                    return {
+                        ...elemento,
+                        ...newValues,
+                    };
+                }
+                return elemento;
+            });
+
+            setFilteredNotes(updatedListaNotas);
+            setListaNotas(updatedListaNotas);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const removeNotes = (id: number) => {
-        const updatedListaNotas = [...(filteredNotes || [])]; 
-        const index = updatedListaNotas.findIndex((notes) => notes.id === id);
+    const removeNotes = async (id: number) => {
+        try {
+            const response = await fetch(`http://localhost:3300/note/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id }),
+            });
 
-        if (index !== -1) {
-            updatedListaNotas.splice(index, 1);
+            if (!response.ok) {
+                throw new Error('Erro ao excluir nota na API');
+            }
+
+            const updatedListaNotas = (filteredNotes || []).filter((note) => note.id !== id);
+
+            setFilteredNotes(updatedListaNotas);
+            setListaNotas(updatedListaNotas);
+        } catch (error) {
+            console.error(error);
         }
 
-        console.log(updatedListaNotas);
-        setFilteredNotes(updatedListaNotas);
-        setListaNotas(updatedListaNotas)
+        // const updatedListaNotas = [...(filteredNotes || [])]; 
+        // const index = updatedListaNotas.findIndex((notes) => notes.id === id);
+
+        // if (index !== -1) {
+        //     updatedListaNotas.splice(index, 1);
+        // }
+
+        // console.log(updatedListaNotas);
+        // setFilteredNotes(updatedListaNotas);
+        // setListaNotas(updatedListaNotas)
     }
 
 

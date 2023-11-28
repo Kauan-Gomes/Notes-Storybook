@@ -49,7 +49,7 @@ export default function ModalAdd({ variant = "sem-cor", functionAddnotes, setVar
       <Button
         variant={variant}
         size='medio'
-        className='mt-5'
+        className='mt-5 mb-2'
         disabled={false}
         type="submit"
       >
