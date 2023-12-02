@@ -17,7 +17,7 @@ export default function Home() {
       }
       const data = await response.json();
       const reversedData = data.reverse();
-
+      1
       setlistaNotas(reversedData);
       setFilteredNotes(reversedData);
     } catch (error) {
